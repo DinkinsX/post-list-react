@@ -12,9 +12,17 @@ export default class PostAddForm extends React.Component {
         };
         
         this.onSubmit = (event) => {
+            const button = event.target.querySelector('button');
             event.preventDefault();
-            this.props.onAdd(this.state.text);
-            this.setState({text: ''});
+            if (this.state.text !== '') {
+                button.classList.remove('btn-danger');
+                button.classList.add('btn-outline-secondary')
+                this.props.onAdd(this.state.text);
+                this.setState({text: ''});
+            } else {
+                button.classList.add('btn-danger');
+                button.classList.remove('btn-outline-secondary')
+            }
         }
     }
 
