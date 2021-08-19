@@ -15,13 +15,15 @@ export default class PostAddForm extends React.Component {
             const button = event.target.querySelector('button');
             event.preventDefault();
             if (this.state.text !== '') {
-                button.classList.remove('btn-danger');
-                button.classList.add('btn-outline-secondary')
                 this.props.onAdd(this.state.text);
                 this.setState({text: ''});
             } else {
                 button.classList.add('btn-danger');
-                button.classList.remove('btn-outline-secondary')
+                button.classList.remove('btn-outline-secondary');
+                setTimeout(()=> {
+                    button.classList.remove('btn-danger');
+                    button.classList.add('btn-outline-secondary');
+                }, 1000);
             }
         }
     }
